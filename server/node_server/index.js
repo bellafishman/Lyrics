@@ -2,25 +2,31 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const axios = require('axios');
+const querystring = require('node:querystring'); 
+const jwt = require('jsonwebtoken');
+// connection to mongodb
+const {mongoose} = require('mongoose');
+// allow connection to python scripts for lyrics
+const { exec } = require('child_process');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const UserModel = require('./models/Users');
 const LyricCommentsModel = require('./models/LyricComments');
 const TrackCommentsModel = require('./models/TrackComments');
+const { searchSpotify, getTrackInfo, getPlaylistTracks, getMyPlaylistTracks, getNewReleases, apiCallWithRetry, getSpotifyUserProfile } = require('./src/spotify_connect');
+const { getLyrics } = require('./src/get_lyrics');
+const { getSpotifyAccessToken, getSpotifyClientAccessToken } = require('./src/spotify_auth');
 
-const querystring = require('node:querystring'); 
-const jwt = require('jsonwebtoken');
-
-// connection to mongodb
-const {mongoose} = require('mongoose');
-
-// allow connection to python scripts for lyrics
-const { exec } = require('child_process');
 
 const app = express();
+// db:
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log('DB connected'))
+  .catch((err) => console.log('DB not connected: ', err));
+
 
 const allowedOrigins = [
-  'https://lyrics-lake.vercel.app/',
+  'https://lyrics-lake.vercel.app',
 ];
 
 app.use(cors({
@@ -39,24 +45,16 @@ app.use(cors({
 // Handle preflight requests
 app.options('*', cors());
 
-
-app.use(express.json())
-
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-// db:
-mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('DB connected'))
-  .catch((err) => console.log('DB not connected: ', err))
 
 const SPOTIFY_Key = process.env.SPOTIFY_ID;
 const SPOTIFY_Secret = process.env.SPOTIFY_SECRET;
 const jwtSecret = process.env.JWT_SECRET;
 const refreshSecret = process.env.JWT_REFRESH;
 
-const { searchSpotify, getTrackInfo, getPlaylistTracks, getMyPlaylistTracks, getNewReleases, apiCallWithRetry, getSpotifyUserProfile } = require('./src/spotify_connect');
-const { getLyrics } = require('./src/get_lyrics');
-const { getSpotifyAccessToken, getSpotifyClientAccessToken } = require('./src/spotify_auth');
+
 // const { downloadImages } = require('./download_images')
 
 
