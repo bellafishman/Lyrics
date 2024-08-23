@@ -24,10 +24,8 @@ app.use(cors({
 app.use(express.json())
 
 const allowedOrigins = [
-  '*'
-  //'http://localhost:4173',
-  //'https://lyrics-lake.vercel.app',
-  //'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
+  'https://lyrics-lake.vercel.app',
+  'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
 ];
 
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
