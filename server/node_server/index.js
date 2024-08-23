@@ -23,27 +23,26 @@ const allowedOrigins = [
   'https://lyrics-lake.vercel.app',
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    console.log('Request origin:', origin);
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Include cookies in CORS requests
-}));
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  } else {
+    res.header('Access-Control-Allow-Origin', 'https://lyrics-lake.vercel.app'); // default to your main origin
+  }
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  
+  next();
+});
 
 
 app.use(express.json())
-
-
-
-app.options('*', cors()); // Handle preflight requests for all route
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
 
