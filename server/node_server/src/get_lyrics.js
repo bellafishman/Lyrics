@@ -14,7 +14,9 @@ const exec = require('child_process').exec;
 const execPromise = util.promisify(exec);
 
 // virtual environment activation script for python
-const venvPath = '../python_scripts/venv/bin/activate';
+const venvPath = path.resolve(__dirname, '../python_scripts/venv/bin/activate');
+const scriptPath = path.resolve(__dirname, '../python_scripts/azapi_script.py');
+
 
 async function getLyrics(songTitle, artistName = 'google') {
   try {
@@ -22,7 +24,7 @@ async function getLyrics(songTitle, artistName = 'google') {
       console.log(songTitle);
       console.log(artistName);
       // Construct the command with the provided or default artist name
-      const command = `source ${venvPath} && python3 ../python_scripts/azapi_script.py "${songTitle}" "${artistName}"`;
+      const command = `${venvPath} && python ${scriptPath} "${songTitle}" "${artistName}"`;
       
       // Execute the command
       const { stdout, stderr } = await execPromise(command);

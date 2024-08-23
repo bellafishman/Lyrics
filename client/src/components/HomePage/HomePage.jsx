@@ -16,6 +16,8 @@ export default function HomePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       // Extract token from URL
+      localStorage.removeItem("ALLEARS-token");
+
       const queryParams = new URLSearchParams(window.location.search);
       let token = queryParams.get('token');
       let refreshToken = queryParams.get('refreshtoken');
@@ -38,7 +40,7 @@ export default function HomePage() {
       console.log("got token: ", token);
       try {
         // Call API to get user data
-        let response = await fetch(`${apiUrl}/user/data`, {
+        let response = await fetch(`${apiUrl}/api/user/data`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // token in the Authorization header
