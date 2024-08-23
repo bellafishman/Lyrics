@@ -20,9 +20,20 @@ const { exec } = require('child_process');
 const app = express();
 app.use(express.json())
 
+const allowedOrigins = [
+  'https://lyrics-lake.vercel.app',
+  'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
+];
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
 app.use(cors({
-  origin: 'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/', // Allow requests from this origin
+  origin: function(origin, callback) {
+    // Check if the origin is in the allowedOrigins array
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 
 // db:
