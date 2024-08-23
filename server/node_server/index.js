@@ -554,6 +554,7 @@ app.get('/api/playlist/:id', async (req, res) => {
 
   if (token) {
     // User is authenticated
+    console.log('user is authenticated');
     const userId = getUserIdFromToken(token);
     if (!userId) {
       return res.status(401).send('Invalid token');
@@ -561,6 +562,7 @@ app.get('/api/playlist/:id', async (req, res) => {
 
     try {
       // Fetch user data from the database
+      console.log('getting user from db');
       const user = await User.findOne({ 'spotify.userId': userId });
 
       if (user) {

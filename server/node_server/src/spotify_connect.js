@@ -119,9 +119,11 @@ async function getTrackInfo(trackId, token) {
 // get specific track info from playlist
 async function getPlaylistTracks(playlistId, token) {
     // add filters to only get relevant information
+    console.log('getting playlist tracks!');
     const url = `https://api.spotify.com/v1/playlists/${playlistId}` + '?market=ES&fields=name%2Ctracks.items%28track%28album%28images%29%2Cartists%2Cid%2Cname%29%29';
     //console.log(`Authorization header: Bearer ${token}`);
     try {
+      console.log('sending request for playlist tracks to spotify');
       const response = await axios.get(url, {
         headers: {
           'Authorization': `Bearer ${token}`
