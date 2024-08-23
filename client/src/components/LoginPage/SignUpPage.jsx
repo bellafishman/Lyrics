@@ -1,7 +1,7 @@
 import React,  {useState} from 'react';
 import { Link } from 'react-router-dom';
 // allow connection to mongodb
-import axios from 'axios'
+import axios from 'axios';
 
 export default function SignUpPage() {
     // change once in production!!!!!
