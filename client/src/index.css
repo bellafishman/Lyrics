@@ -1,0 +1,677 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* ------------------------------------------------------------------------------------*/
+/* NavBar */
+.NavBar {
+    height: 50px; 
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-between; 
+    padding: 0 20px; /* Add padding for some spacing */
+}
+.NavBar nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the nav items */
+}
+.NavBar-HomeLink {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    text-decoration: none;
+}
+.NavBar-logo {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+    width: auto;
+    height: 75px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.NavBar-Name {
+    font-family: "Bebas Neue", sans-serif;
+    color: rgb(219, 219, 219);
+    font-size: 38px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.NavBar-Name:hover {
+    color: white;
+}
+.NavBar-Name:focus {
+    color: white;
+    border: white;
+}
+.NavBar-Login {
+    font-family: "Bebas Neue", sans-serif;
+    color: rgb(219, 219, 219);
+    font-size: 28px;
+    text-align: right;
+    margin-left: auto;
+    text-decoration: none;
+    margin-right: 50px;
+    margin-left: 20px;
+}
+.NavBar-Login:hover {
+    color: white;
+}
+.NavBar-Login:focus {
+    color: white;
+    border: white;
+}
+.searchButton {
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: rgb(219, 219, 219);
+    font-size: 30px;
+}
+.searchButton:hover {
+    color: white;
+}
+.searchButton:focus {
+    color: white;
+    border: white;
+}
+.searchContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* center search content horizontally */
+    align-items: center; /* center vertically */
+    gap: 10px; 
+    padding: 20px; 
+}
+.search {
+    border-radius: 10px;
+    font-family: "Marcellus", serif;
+    align-items: center; /* Center align vertically */
+    outline: none;
+    width: 70%;
+    padding: 10px; 
+    font-size: 14px; 
+    display: block;
+    background-color: #BA5C12;
+}
+.searchResults {
+    font-family: "Crimson Text", serif;
+    width: 70%; 
+    z-index: 1;
+    position: relative;
+}
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Gray out the background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's above other content */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.search-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.search-results-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 80vh;
+}
+.hidden {
+    display: none;
+}
+
+/* ------------------------------------------------------------------------------------*/
+/* Home Header */
+.HomeHeader {
+    padding-top: 20px;
+    max-width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 100px;
+    align-items: center;
+    position: relative;
+    background-image: url('/imgs/Grid1999x1335.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+.HomeHeader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.892), rgba(27, 27, 27, 0.59));
+    z-index: 1; /* Overlay this above the image */
+}
+.HomeHeader > * {
+    position: relative;
+    z-index: 2; /* Ensure other content is above the overlay */
+}
+.HomeIntroduction {
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+    font-size: 34px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 100px;
+}
+.userName {
+    color: #39a52d;
+    text-decoration: underline black;
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------------*/
+/* Home Suggestions */
+.suggestions {
+    /* contains all suggestions */
+    /* add left and right margin */
+    max-width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 100px;
+}
+.suggestion {
+    /* vertical spaces between items and spaces between items and screen edge */
+    margin: 40px auto;
+    font-family: "Crimson Text", serif;
+    position: relative;
+}
+.suggestion-title {
+    /* small size and color left aligned above row of songs */
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.suggestion-content { 
+    /* horizontally row for all content */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.track-container {
+    /* spaces between items and content here in a column */
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    gap: 10px;
+    width: calc(100% - 80px);
+    justify-content: space-between;
+}
+.track-link {
+    text-decoration: none;
+    font: inherit;
+}
+.track {
+    /* take away button styling */
+    padding-top: 5px;
+    background: none;
+	border: none;
+	outline: none;
+    flex: 1 1 calc(100% / 3 - 10px); /* Adjust based on number of items per row */
+    max-width: calc(100% / 3 - 10px); /* Adjust based on number of items per row */
+    box-sizing: border-box;
+    position: relative;
+    /* align sub elements to same top height */
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-start; */
+    align-items: center;
+}
+.track:hover {
+    background: rgb(220, 220, 220);
+}
+.track:focus {
+    background: rgb(220, 220, 220);
+}
+.album-cover {
+    /* align and scale */
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+    /* how image is resized to fit in container */
+}
+.track-info {
+    font-family: "Crimson Text", serif;
+    /* contains track name and artists listed below album cover in a column*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.track-name {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 auto;
+}
+.track-artists {
+    color: #414141;
+    font-size: 14px;
+    margin: 2px 5px;
+}
+.suggestionsPrev {
+    /* left aligned */
+    margin-right: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #BA5C12;
+    font-size: 30px;
+}
+.suggestionsNext {
+    /* right aligned */
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #BA5C12;
+    font-size: 30px;
+}
+.suggestionsScroll {
+    /* hover and click and positions vertically */
+    transition: translate 0.3s ease;
+}
+.suggestionsNext:hover {
+    translate: 3px;
+}
+.suggestionsPrev:hover {
+    translate: -3px;
+}
+.hidden-icon {
+    /* hide next and prev icons when not applicable */
+    visibility: hidden;
+}
+/* Media Queries for Responsive Design */
+@media screen and (min-width: 768px) {
+    .track {
+        flex: 1 1 calc(100% / 4 - 10px); /* Adjust based on number of items per row */
+        max-width: calc(100% / 4 - 10px); /* Adjust based on number of items per row */
+    }
+    .suggestions {
+        /* contains all suggestions */
+        /* add left and right margin */
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .track {
+        flex: 1 1 calc(100% / 5 - 10px); /* Adjust based on number of items per row */
+        max-width: calc(100% / 5 - 10px); /* Adjust based on number of items per row */
+    }
+    .suggestions {
+        /* contains all suggestions */
+        /* add left and right margin */
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------*/
+/* Lyrics Header */
+.LyricHeader {
+    padding: 20px;
+    background-color: #BA5C12;
+}
+.lyric-header {
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+}
+.lyric-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin:0;
+    padding: 0;
+}
+.lyric-info h2,
+.lyric-info h3,
+.lyric-info p {
+    margin: 0; /* Remove automatic margins */
+    padding: 5px 0; 
+}
+.lyric-trackname {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 40px;
+}
+.lyric-trackartists {
+    font-family: "Crimson Text", serif;
+    font-size: 22px;
+}
+.lyric-albuminfo {
+    font-family: "Crimson Text", serif;
+    font-size: 22px;
+}
+.Lyric-album-cover {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    padding-right: 30px;
+    /* smooth padding transition */
+    transition: padding-left 0.3s ease;
+}
+/* ------------------------------------------------------------------------------------*/
+/* Lyrics */
+.lyrics {
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 75px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+.lyric-line {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    color: black;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+.lyric-line p {
+    margin: 0;  /* remove auto p margins */
+    padding: 0; /* default padding */
+}
+.lyric-break {
+    margin: 10px 0;
+    height: 20px;
+    cursor: default; 
+}
+button.lyric-line {
+    display: block;
+    text-align: left; /* overflow goes to left of next line*/
+}
+.lyric-line:hover {
+    background-color: black;
+    color: white;
+}
+.lyric-line:focus {
+    background-color: black;
+    color: white;
+}
+/* sidebar*/
+.sidebar {
+    position: fixed;
+    display: flex;
+    inset: 0;
+    z-index: 10; /* Ensure sidebar above other text and elements */
+    flex-direction: row;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%; /* Full screen on small devices */
+}
+
+/* Sidebar content */
+.sidebarContents {
+    z-index: 15;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    gap: 1rem;
+    padding: 1rem;
+    overflow-y: auto; /* Allow scrolling if contents overflow */
+    height: 100%;
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    margin: auto;
+}
+
+/* Sidebar button styling */
+.sidebarContents button {
+    background: transparent;
+    color: #BA5C12;
+    border: none;
+    outline: none;
+    margin-right: auto;
+    padding: 1rem 0rem;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.sidebarContents button i {
+    font-size: 20px; /* Increase button icon size */
+}
+
+.sidebarContents button:hover {
+    opacity: 0.75;
+}
+.add-lyriccomments button {
+    background: transparent;
+    color: #BA5C12;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+.add-lyriccomments button i {
+    font-size: 20px; /* Increase button icon size */
+}
+.add-lyriccomments button:hover {
+    opacity: 0.75;
+}
+
+/* Styling for larger screens */
+@media (min-width: 640px) {
+    .sidebar {
+        position: fixed; /* Keep fixed on larger screens */
+        top: 0;
+        right: 0;
+        min-width: 30%;
+        max-width: 40%; /* Sidebar width on larger screens */
+        box-shadow: 0 0 20px 1px #01041b;
+        height: 100vh; /* Ensure full height */
+        margin-left: auto;
+    }
+    .sidebarContents {
+        width: 100%;
+        height: 100%; /* Full height */
+        overflow-y: auto; /* Allow scrolling if needed */
+        margin: 0; /* Remove margin */
+        margin-left: auto;
+    }
+}
+
+/* ------------------------------------------------------------------------------------*/
+
+
+
+
+/* <div className='loader'></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+        radial-gradient(farthest-side,#BA5C12 94%,#0000) top/8px 8px no-repeat,
+        conic-gradient(#0000 30%,#BA5C12);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation: l13 1s infinite linear;
+}
+@keyframes l13{ 
+    100%{transform: rotate(1turn)}
+}
+/* Centering the loader */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw; 
+}
+/* ------------------------------------------------------------------------------------*/
+/* Login Page */
+.Login-Name {
+    font-family: "Bebas Neue", sans-serif;
+    color: #BA5C12;
+    font-size: 38px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.Login-Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Lexend Deca", sans-serif;
+    line-height: 1.5;
+    /* background color fills background visible*/
+    min-height: 100vh;
+    background: #BA5C12;
+    flex-direction: column;
+    margin: 0;
+}
+.Login {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    padding-top: 40px;
+    transition: transform 0.2s;
+    max-width: 600px;
+    width: 80%;
+    text-align: center;
+}
+.spotify {
+    border-radius: 10px;
+    background-color: #39a52d;
+    padding: 5px;
+    max-width: 300px;
+    font-size: 16px;
+}
+.Login-head {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.LoginLabel {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+.LoginInput {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.LoginButton {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #39a52d;
+    width: 100%;
+    font-size: 16px;
+}
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    right: 0;
+    background-color: red; 
+    color: white;
+    padding: 10px; 
+    text-align: center; 
+    z-index: 1000;
+}
+/* ------------------------------------------------------------------------------------*/
+/* Media Styling */
+@media screen and (max-width: 768px) {
+    .NavBar-logo {
+        width: auto;
+        height: 50px;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+    .NavBar-Name {
+        font-size: 30px;
+    }
+    .NavBar-Login {
+        margin-right: 10px;
+    }
+
+    .Lyric-album-cover {
+        width: 100px;
+        height: 100px;
+
+    }
+}
+@media screen and (min-width: 768px) {
+    .Lyric-album-cover {
+        padding-left: 30px;
+    }
+    .lyrics {
+        padding-left: 100px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .Lyric-album-cover {
+        padding-left: 60px;
+    }
+    .lyrics {
+        padding-left: 150px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .Lyric-album-cover {
+        padding-left: 90px;
+    }
+    .lyrics {
+        padding-left: 200px;
+    }
+}
