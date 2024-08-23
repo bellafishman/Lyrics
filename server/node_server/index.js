@@ -22,7 +22,7 @@ app.use(express.json())
 
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from this origin
+  origin: 'https://lyrics-lake.vercel.app/', // Allow requests from this origin
 }));
 
 // db:
@@ -128,7 +128,7 @@ app.get('/callback', async (req, res) => {
     spotifyRefreshToken = tokenData.refreshToken;
 
     // welcome?access_token=${tokenData.accessToken}&refresh_token=${tokenData.refreshToken}
-    res.redirect(`http://localhost:5173/?token=${token}&refreshtoken=${refreshtoken}`);
+    res.redirect(`https://lyrics-lake.vercel.app/?token=${token}&refreshtoken=${refreshtoken}`);
   } catch (error) {
     res.status(500).json({ error: 'Failed to exchange code for tokens' });
   }

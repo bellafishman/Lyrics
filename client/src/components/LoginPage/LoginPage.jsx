@@ -25,7 +25,7 @@ export default function LoginPage() {
           localStorage.setItem('ALLEARS-token', token);
           localStorage.setItem('ALLEARS-refreshtoken', refreshtoken);
           // Handle success, e.g., redirect to another page or show a success message
-          window.location.href = `http://localhost:5173/?token=${token}`; // Redirect to homepage
+          window.location.href = `https://lyrics-lake.vercel.app/?token=${token}`; // Redirect to homepage
         })
         .catch(err => {
             console.error('Error:', err);

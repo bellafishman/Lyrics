@@ -29,7 +29,7 @@ export default function SignUpPage() {
             // Store the token and redirect manually
             localStorage.setItem('ALLEARS-token', token);
             localStorage.setItem('ALLEARS-refreshtoken', refreshtoken);
-            window.location.href = `http://localhost:5173/?token=${token}`;
+            window.location.href = `https://lyrics-lake.vercel.app/?token=${token}`;
           }
         })
         .catch(err => {
