@@ -5,7 +5,8 @@
 // need this line bc working with function traditionally using callbacks
 // util allows us to use async
 const util = require('util');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 // using python child function
 const exec = require('child_process').exec;
 

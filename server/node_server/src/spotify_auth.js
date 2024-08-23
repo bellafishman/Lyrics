@@ -2,9 +2,9 @@
 // Bella Fishman
 // Connects to Spotify API and gets access token
 // runs on page load and stores Spotify token on session storage to avoid excessive api token calls
-
+const path = require('path');
 const axios = require('axios');
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const { UserModel } = require('../models/Users');
 const querystring = require('node:querystring'); 
 const qs = require('qs');
@@ -12,7 +12,8 @@ const qs = require('qs');
 
 const SPOTIFY_Key = process.env.SPOTIFY_ID;
 const SPOTIFY_Secret = process.env.SPOTIFY_SECRET;
-const redirect_uri = 'http://localhost/8080/callback';
+
+const redirect_uri = 'https://lyrics-server.vercel.app/callback';
 const tokenUrl = 'https://accounts.spotify.com/api/token';
 
 

@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const axios = require('axios');
 const UserModel = require('./models/Users');
 const LyricCommentsModel = require('./models/LyricComments');
@@ -35,7 +35,7 @@ app.use(cors({
     }
   }
 }));
-
+console.log(process.env.MONGO_URL);
 // db:
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log('DB connected'))
@@ -683,8 +683,4 @@ app.get('/api/new-releases', async (req, res) => {
 // Direct routing to react client side router
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
-});
-
-app.listen(PORT, function() {
-    console.log('Listening on http://localhost:'+PORT);
 });

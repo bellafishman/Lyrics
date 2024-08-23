@@ -1,9 +1,9 @@
 //
 // Bella Fishman
 // Handle interactions (GET requests) with spotify API
-
+const path = require('path');
 const axios = require('axios');
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const { getSpotifyAccessToken, getClientRefresh } = require('./spotify_auth');
 
 
