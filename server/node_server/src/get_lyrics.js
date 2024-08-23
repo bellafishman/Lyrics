@@ -5,6 +5,7 @@
 // need this line bc working with function traditionally using callbacks
 // util allows us to use async
 const util = require('util');
+require('dotenv').config();
 // using python child function
 const exec = require('child_process').exec;
 

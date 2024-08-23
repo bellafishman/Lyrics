@@ -3,6 +3,7 @@
 // Handle interactions (GET requests) with spotify API
 
 const axios = require('axios');
+require('dotenv').config();
 const { getSpotifyAccessToken, getClientRefresh } = require('./spotify_auth');
 
 

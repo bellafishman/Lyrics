@@ -41,8 +41,7 @@ const { getSpotifyAccessToken, getSpotifyClientAccessToken } = require('./src/sp
 // const { downloadImages } = require('./download_images')
 
 
-const PORT = process.env.PORT || 8080;
-const redirect_uri = 'http://localhost:8080/callback'
+const redirect_uri = 'https://lyrics-server.vercel.app/callback'
 
 // Serve the static files from the React app
 
@@ -82,7 +81,7 @@ app.get('/callback', async (req, res) => {
   
   try {
     console.log('callback sending');
-    const tokenData = await getSpotifyClientAccessToken(code, 'http://localhost:8080/callback');
+    const tokenData = await getSpotifyClientAccessToken(code, 'https://lyrics-server.vercel.app/callback');
     
     const userData = await getSpotifyUserProfile(tokenData.accessToken);
     console.log("UserData: ", userData)

@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const LyricCommentsModel = require('../models/LyricComments');
 
 
