@@ -51,7 +51,7 @@ export default function LoginPage() {
         </div>
         <h3>Enter your login credentials</h3>
         <form onSubmit={handleSubmit}>
-          <label className='LoginLabel' htmlFor="first">Username:</label>
+          <label className='LoginLabel' htmlFor="email">Email:</label>
           <input 
                 className='LoginInput'
                 type="text" 

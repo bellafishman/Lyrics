@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export default function HomePage() {
   // change once in production!!!!!
   const apiUrl = import.meta.env.VITE_API_URL;
-  console.log("APIUrl: ", apiUrl);
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);

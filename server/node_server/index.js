@@ -18,23 +18,33 @@ const {mongoose} = require('mongoose');
 const { exec } = require('child_process');
 
 const app = express();
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.json())
 
 const allowedOrigins = [
-  'https://lyrics-lake.vercel.app',
-  'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
+  '*'
+  //'http://localhost:4173',
+  //'https://lyrics-lake.vercel.app',
+  //'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
 ];
+
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
-app.use(cors({
-  origin: function(origin, callback) {
+//app.use(cors({
+//  origin: function(origin, callback) {
+//    console.log('Request origin:', origin);
     // Check if the origin is in the allowedOrigins array
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
+//    if (allowedOrigins.indexOf(origin) !== -1) {
+//      callback(null, true);
+//    } else {
+//      callback(new Error('Not allowed by CORS'));
+//    }
+//  }
+//}));
+
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+
 // db:
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log('DB connected'))
@@ -136,7 +146,7 @@ app.get('/callback', async (req, res) => {
     spotifyRefreshToken = tokenData.refreshToken;
 
     // welcome?access_token=${tokenData.accessToken}&refresh_token=${tokenData.refreshToken}
-    res.redirect(`https://lyrics-lake.vercel.app/?token=${token}&refreshtoken=${refreshtoken}`);
+    res.redirect(`${redirect_uri}?token=${token}&refreshtoken=${refreshtoken}`);
   } catch (error) {
     res.status(500).json({ error: 'Failed to exchange code for tokens' });
   }
@@ -525,7 +535,7 @@ app.get('/api/lyrics', async (req, res) => {
   }
 
   try {
-    const trackInfo = await apiCallWithRetry(accessToken, refreshToken, (token) => geLyrics(track, artist, token), 
+    const trackInfo = await apiCallWithRetry(accessToken, refreshToken, (token) => getLyrics(track, artist, token), 
       (newToken) => accessToken = newToken, 
       (newRefreshToken) => refreshToken = newRefreshToken
     );
@@ -682,4 +692,8 @@ app.get('/api/new-releases', async (req, res) => {
 // Direct routing to react client side router
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
+const PORT = 8080;
+app.listen(PORT, function() {
+  console.log('Listening on http://localhost:'+PORT);
 });

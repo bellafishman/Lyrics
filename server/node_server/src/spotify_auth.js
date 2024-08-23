@@ -13,7 +13,8 @@ const qs = require('qs');
 const SPOTIFY_Key = process.env.SPOTIFY_ID;
 const SPOTIFY_Secret = process.env.SPOTIFY_SECRET;
 
-const redirect_uri = 'https://lyrics-server.vercel.app/callback';
+
+const redirect_uri = 'https://lyrics-server.vercel.app/callback'
 const tokenUrl = 'https://accounts.spotify.com/api/token';
 
 
