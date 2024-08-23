@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const axios = require('axios');
 const UserModel = require('./models/Users');
