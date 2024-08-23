@@ -18,27 +18,32 @@ const {mongoose} = require('mongoose');
 const { exec } = require('child_process');
 
 const app = express();
-app.use(cors({
-  origin: '*'
-}));
-app.use(express.json())
 
 const allowedOrigins = [
   'https://lyrics-lake.vercel.app',
 ];
 
-// CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
 app.use(cors({
   origin: function(origin, callback) {
     console.log('Request origin:', origin);
-    // Check if the origin is in the allowedOrigins array
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Include cookies in CORS requests
 }));
+
+
+app.use(express.json())
+
+
+
+app.options('*', cors()); // Handle preflight requests for all route
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
 
