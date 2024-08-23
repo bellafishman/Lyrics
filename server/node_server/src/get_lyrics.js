@@ -17,28 +17,28 @@ const execPromise = util.promisify(exec);
 const venvPath = '../python_scripts/venv/bin/activate';
 
 async function getLyrics(songTitle, artistName = 'google') {
-    try {
-        console.log("getlyrics");
-        console.log(songTitle);
-        console.log(artistName);
-        // Construct the command with the provided or default artist name
-        const command = `source ${venvPath} && python3 ../python_scripts/azapi_script.py "${songTitle}" "${artistName}"`;
-        
-        // Execute the command
-        const { stdout, stderr } = await execPromise(command);
-        
-        if (stderr) {
-          throw new Error(`Stderr: ${stderr}`);
-        }
-        
-        // Parse and return the lyrics from the command output
-        const result = JSON.parse(stdout);
-        return result.lyrics;
-
-      } catch (error) {
-        console.error('Error getting lyrics:', error.message);
-        throw error;
+  try {
+      console.log("getlyrics");
+      console.log(songTitle);
+      console.log(artistName);
+      // Construct the command with the provided or default artist name
+      const command = `source ${venvPath} && python3 ../python_scripts/azapi_script.py "${songTitle}" "${artistName}"`;
+      
+      // Execute the command
+      const { stdout, stderr } = await execPromise(command);
+      
+      if (stderr) {
+        throw new Error(`Stderr: ${stderr}`);
       }
+      
+      // Parse and return the lyrics from the command output
+      const result = JSON.parse(stdout);
+      return result.lyrics;
+
+    } catch (error) {
+      console.error('Error getting lyrics:', error.message);
+      throw error;
+    }
 }
 
 module.exports = {getLyrics};

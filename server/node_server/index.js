@@ -505,6 +505,8 @@ app.get('/api/lyrics', async (req, res) => {
   if (token) {
     // User is authenticated
     const userId = getUserIdFromToken(token);
+    console.log(userId);
+
     if (!userId) {
       return res.status(401).send('Invalid token');
     }
@@ -512,7 +514,7 @@ app.get('/api/lyrics', async (req, res) => {
     try {
       // Fetch user data from the database
       const user = await User.findOne({ 'spotify.userId': userId });
-
+      console.log('getting user');
       if (user) {
         // User is authenticated via Spotify
         accessToken = user.spotify.accesstoken;
@@ -520,6 +522,7 @@ app.get('/api/lyrics', async (req, res) => {
       } else {
         // Use a default access token if the user is not authenticated via Spotify
         accessToken = spotifyAccessToken;
+        console.log(spotifyAccessToken);
         refreshToken = ''; // Default refresh token may not be needed if access token is valid
       }
     } catch (err) {
@@ -528,6 +531,7 @@ app.get('/api/lyrics', async (req, res) => {
   } else {
     // No authentication provided, use default access token
     accessToken = spotifyAccessToken;
+    console.log('no token: ', spotifyAccessToken);
     refreshToken = ''; // No refresh token if no user is logged in
   }
 
