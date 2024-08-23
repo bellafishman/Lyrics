@@ -242,7 +242,7 @@ const checkToken = (req, res, next) => {
   });
 }
 //This is a protected route 
-app.get('/user/data', checkToken, async (req, res) => {
+app.get('/api/user/data', checkToken, async (req, res) => {
   try {
     console.log("USER ID in USER/DATA: ", req.user.userId);
     const user = await UserModel.findById(req.user.userId);
@@ -298,7 +298,7 @@ app.use(async (req, res, next) => {
 
 // interact with comment routes:
 // get Lyric Comments
-app.get('/lyriccomments/:trackId/:lyricId', async (req, res) => {
+app.get('/api/lyriccomments/:trackId/:lyricId', async (req, res) => {
   
     const trackId = String(req.params.trackId);
     const lyricId = String(req.params.lyricId);
@@ -336,7 +336,7 @@ app.get('/lyriccomments/:trackId/:lyricId', async (req, res) => {
     }
 });
 // post Lyric Comment
-app.post('/postlyriccomments', async (req, res) => {
+app.post('/api/postlyriccomments', async (req, res) => {
   const { trackId, lyricId, userId, commentText } = req.body;
   try {
       const newComment = new LyricCommentsModel({
@@ -353,7 +353,7 @@ app.post('/postlyriccomments', async (req, res) => {
 });
 
 // Get Song Comments
-app.get('/trackcomments/:trackId', async (req, res) => {
+app.get('/api/trackcomments/:trackId', async (req, res) => {
   const { trackId } = req.params;
   try {
       const comments = await TrackCommentsModel.find({ trackId });
@@ -363,7 +363,7 @@ app.get('/trackcomments/:trackId', async (req, res) => {
   }
 });
 // post song comment
-app.post('/trackcomments', async (req, res) => {
+app.post('/api/trackcomments', async (req, res) => {
   const { trackId, userId, commentText } = req.body;
   try {
       const newComment = new TrackCommentsModel({

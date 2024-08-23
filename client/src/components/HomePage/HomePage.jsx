@@ -58,7 +58,7 @@ export default function HomePage() {
             const data = await refreshResponse.json();
             localStorage.setItem('ALLEARS-token', data.token);
             // Retry the original request with the new access token
-            response = await fetch(`${apiUrl}/user/data`, {
+            response = await fetch(`${apiUrl}/api/user/data`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${data.token}`, // token in the Authorization header

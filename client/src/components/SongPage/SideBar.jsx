@@ -28,7 +28,7 @@ export default function SideBar(props) {
 
 
         // Fetch lyric comments from the API
-        const response = await axios.get(`${apiUrl}/lyriccomments/${trackId}/${lyricId}`, {
+        const response = await axios.get(`${apiUrl}/api/lyriccomments/${trackId}/${lyricId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -61,7 +61,7 @@ export default function SideBar(props) {
 
     try {
       let token = localStorage.getItem('ALLEARS-token')
-      const response = await fetch(`${apiUrl}/postlyriccomments`, {
+      const response = await fetch(`${apiUrl}/api/postlyriccomments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
