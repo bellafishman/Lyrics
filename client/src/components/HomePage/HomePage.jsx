@@ -131,7 +131,7 @@ export default function HomePage() {
       
       <div className='suggestions'>
         {/* when user is loaded, load their first 50 liked songs and some mroe unique user playlists ... */}
-        {user && (
+        {/*user && (
           <div>
             <Suggestions 
               handleApiCall={() => handleApiCall("my-playlists")}
@@ -140,7 +140,7 @@ export default function HomePage() {
               handleApiCall={() => handleApiCall("my-playlists")}
             /> 
           </div>
-          )}
+        )*/}
         {/*Top 50*/}
         <Suggestions 
           handleApiCall={() => handleApiCall("playlist", "37i9dQZF1DXcBWIGoYBM5M")}
