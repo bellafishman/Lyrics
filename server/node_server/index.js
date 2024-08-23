@@ -45,8 +45,7 @@ const PORT = process.env.PORT || 8080;
 const redirect_uri = 'http://localhost:8080/callback'
 
 // Serve the static files from the React app
-// change to dist later when done
-app.use(express.static(path.join(__dirname, '../../client/dist')));
+
 
 
 // get spotify access token on page to be used on all requests by 1 client
