@@ -22,7 +22,7 @@ app.use(express.json())
 
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
 app.use(cors({
-  origin: 'https://lyrics-lake.vercel.app/', // Allow requests from this origin
+  origin: 'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/', // Allow requests from this origin
 }));
 
 // db:
