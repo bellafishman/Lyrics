@@ -25,21 +25,20 @@ app.use(express.json())
 
 const allowedOrigins = [
   'https://lyrics-lake.vercel.app',
-  'https://lyrics-md79f2d1l-bellafishmans-projects.vercel.app/',
 ];
 
 // CHANGE LATER TO REFLECT ACTUAL CLIENT LINK
-//app.use(cors({
-//  origin: function(origin, callback) {
-//    console.log('Request origin:', origin);
+app.use(cors({
+  origin: function(origin, callback) {
+    console.log('Request origin:', origin);
     // Check if the origin is in the allowedOrigins array
-//    if (allowedOrigins.indexOf(origin) !== -1) {
-//      callback(null, true);
-//    } else {
-//      callback(new Error('Not allowed by CORS'));
-//    }
-//  }
-//}));
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
 
