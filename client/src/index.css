@@ -470,9 +470,31 @@ button.lyric-line {
 .sidebarContents button i {
     font-size: 20px; /* Increase button icon size */
 }
-
 .sidebarContents button:hover {
     opacity: 0.75;
+    color: black;
+}
+.commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+}
+.comment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+}
+.add-lyriccomments {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Aligns content to the bottom */   
+}
+.textarea {
+    max-width: 80%;
+    font-size: 16px;
 }
 .add-lyriccomments button {
     background: transparent;
@@ -485,6 +507,7 @@ button.lyric-line {
 }
 .add-lyriccomments button:hover {
     opacity: 0.75;
+    color: black;
 }
 
 /* Styling for larger screens */
@@ -543,6 +566,9 @@ button.lyric-line {
     font-size: 38px;
     font-weight: bold;
     text-decoration: none;
+}
+.Login-Name:hover {
+    color: #8a4815ca;
 }
 .Login-Container {
     display: flex;
@@ -609,6 +635,9 @@ button.lyric-line {
     background-color: #39a52d;
     width: 100%;
     font-size: 16px;
+}
+.LoginButton:hover {
+    border: 3px solid black;
 }
 .wrap {
     display: flex;

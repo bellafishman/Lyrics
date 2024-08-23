@@ -91,19 +91,21 @@ export default function SideBar(props) {
   return (
     <div className='sidebar'>
       <div className='sidebarContents'>
-        <button onClick={handleToggleModal}>
+        <button className='sidebarExit' onClick={handleToggleModal}>
             <i className="fa-solid fa-xmark"></i>
         </button>
       
         {/* Render lyrics comments here */}
         {lyricComments.length > 0 ? (
-          <ul>
+          <div className='commentContainer'>
             {lyricComments.map((comment, index) => (
-              <li key={index}>
-                <strong>{comment.username}</strong>: {comment.comments} (Likes: {comment.likes})
-              </li>
+              <div c
+                className='comment' 
+                key={index}>
+                <strong>{comment.username}</strong>: {comment.comments}
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p>No comments available.</p>
         )}
@@ -111,6 +113,7 @@ export default function SideBar(props) {
         {userid && (
           <div className="add-lyriccomments">
             <textarea
+              className='textarea'
               placeholder="Add a comment..."
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}>
